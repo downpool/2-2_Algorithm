@@ -89,7 +89,6 @@ function solution2(){
     let a = gets().split(' ');
     let b = gets().split(' ');
     let count = 0;
-    let ok = false;
     let cnt = Number(a[1]);
 
     function mergeSort(m){
@@ -139,7 +138,7 @@ function solution2(){
                 left.shift();
             }
             //ok를 없애고 시도해보고 싶었으나 코딩테스트 사이트 기간 종료됨..
-            while(right.length != 0 && !ok){
+            while(right.length != 0){
                 result.push(right[0]);
                 right.shift();
             }
