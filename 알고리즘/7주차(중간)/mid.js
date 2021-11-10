@@ -252,10 +252,7 @@ function sol4_1(){
                 break;
             }
         }
-    }
-    for(let arr)
-
-    
+    }    
 }
 
 function sol4_2(){

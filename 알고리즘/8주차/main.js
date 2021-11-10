@@ -1,58 +1,16 @@
-function solution1() {
-    let input = gets().split(' ');
-    input[0] = Number(input[0]);
-    input[1] = Number(input[1]);
-    let nodes = gets().toLowerCase().split(' ');
-    let graph = [];
-
-    for (let i = 0; i < input[1]; i++) {
-        let temp = gets().toLowerCase().split(' ');
-        graph.push([temp[0], temp[1]]);
-        graph.push([temp[1], temp[0]]);
-    }
-
-    function DFS(g, v, visit) {
-        visit[v] = 1;
-
-        for (let i = 0; i < g.length; i++) {
-            if (g[i][0] == v) {
-                if (visit[g[i][1]] !== 1) {
-                    DFS(g, g[i][1], visit);
-                }
-            } else if (g[i][1] == v) {
-                if (visit[g[i][0]] !== 1) {
-                    DFS(g, g[i][0], visit);
-                }
-            }
-        }
-    }
-
-    let ans = 'True';
-
-    let visit = nodes.slice();
-    DFS(graph, nodes[0], visit);
-    for (let i = 0; i < visit.length; i++) {
-        if (visit[i] != nodes[i]) {
-            ans = 'False';
-            break;
-        }
-    }
-
-    print(ans);
-}
-
-function solution1_2_sol() {
+function solution1_1() {
     let input = gets().split(' ');
     let n = Number(input[0]);
     let m = Number(input[1]);
     let nodes = gets().split(' ');
     let graph = Array.from(Array(n), () => Array(n).fill(0));
+    //인접 행렬 이용
     for (let i = 0; i < m; i++) {
         let temp = gets().split(' ');
         graph[nodes.indexOf(temp[0])][nodes.indexOf(temp[1])] = 1;
         graph[nodes.indexOf(temp[1])][nodes.indexOf(temp[0])] = 1;
     }
-
+    //DFS 이용
     function DFS(g, v, visit) {
         visit[v] = true;
 
@@ -74,55 +32,7 @@ function solution1_2_sol() {
     print(answer);
 }
 
-function solution2() {
-    let inp = gets().split(' ');
-    let input = gets().split(' ');
-    let base = [];
-    let power = [];
-
-    for (let i of inp) {
-        base.push(Number(i));
-    }
-    for (let i of input) {
-        power.push(Number(i));
-    }
-
-    base.sort();
-    power.sort();
-
-    let min = 0;
-    let max = Math.max((Math.max(...power) - Math.min(...base)), (Math.max(...base) - Math.min(...power)));
-    let mid;
-    let ans = [];
-
-    function powerOk(b, p, sup) {
-        for (let i of b) {
-            let ok = false;
-            for (let j of p) {
-                if ((i + sup) <= j && (i - sup) >= j) {
-                    ok = true;
-                }
-            }
-            if (!ok) return false;
-        }
-        return true;
-    }
-
-    while (min <= max) {
-        mid = Math.floor((min + max) / 2);
-
-        if (powerOk(base, power, mid)) {
-            ans.push(mid);
-            max = mid - 1;
-        } else {
-            min = mid + 1;
-        }
-    }
-    print(Math.min(...ans));
-
-}
-//이분 탐색
-function solution2_2_sol() {
+function solution2_1() {
     let input = gets().split(' ');
     let base = [];
     input.forEach(e => {
@@ -135,6 +45,7 @@ function solution2_2_sol() {
     })
     base.sort();
     power.sort();
+    //이분 탐색 이용
     let lt = 0;
     let rt = Math.max((Math.max(...base) - Math.min(...power)), (Math.max(...power) - Math.min(...base)));
     let mid;
@@ -168,25 +79,7 @@ function solution2_2_sol() {
     print(Math.min(...ans));
 }
 
-function solution2_3() {
-    let input = gets().split(' ');
-    let base = [];
-    input.forEach(e => {
-        base.push(Number(e));
-    })
-    input = gets().split(' ');
-    let power = [];
-    input.forEach(e => {
-        power.push(Number(e));
-    })
-    let arr = [];
-    let max = Number.MAX_SAFE_INTEGER;
-
-}
-
-//1 33 66 99 111
-//15 48 81 100
-function solution3_sol() {
+function solution3_1() {
     while (true) {
         let input = gets().trim();
         if (input == null || input == '') {
@@ -202,10 +95,10 @@ function solution3_sol() {
             print(0);
         }
     }
+
 }
 
-function solution4_sol() {
-
+function solution4_1() {
     function chang(n) {
         let k = n.toString().split('');
         let wer = [];
@@ -230,4 +123,6 @@ function solution4_sol() {
     }
 
     print(ans);
+
+
 }
