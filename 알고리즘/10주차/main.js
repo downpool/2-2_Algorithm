@@ -72,7 +72,6 @@ function solution2_2() {
 }
 //3번
 function solution3() {
-
     gets();
     let nodes = gets().split(' ');
     let target = Number(gets());
