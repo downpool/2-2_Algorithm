@@ -59,11 +59,11 @@ function solution1_1() {
     }
     let visit = Array(num).fill(false);
     let dist = Array(num).fill(100001);
-    let pre = Array(num).fill("");
+    let pre = Array(num).fill(-1);
     function dijkstra(start) {
         for (let i = 0; i < num; i++) {
             dist[i] = arr[start][i];
-            pre[i] = nodes[start];
+            pre[i] = start;
         }
         visit[start] = true;
         for (let i = 0; i < num; i++) {
@@ -73,7 +73,7 @@ function solution1_1() {
                 if (!visit[j]) {
                     if (dist[cc] + arr[cc][j] < dist[j]) {
                         dist[j] = dist[cc] + arr[cc][j];
-                        pre[j] = pre[cc] + nodes[j];
+                        pre[j] = cc;
                     }
                 }
             }
@@ -91,9 +91,14 @@ function solution1_1() {
             return index;
         }
     }
-
+    let ans = [];
+    let near = nodes.indexOf(fromto[1]);
+    while(pre[near] != -1){
+        ans.push(nodes[near]);
+        near = pre[near];
+    }
     dijkstra(nodes.indexOf(fromto[0]));
-    print(pre[nodes.indexOf(fromto[1])]);
+    print(ans.reverse().join(''));
     print(dist[nodes.indexOf(fromto[1])]);
 
 }
