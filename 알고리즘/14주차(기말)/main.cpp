@@ -1,5 +1,3 @@
-// main.c++
-
 #include <iostream>
 using namespace std;
 unsigned long long int arr[102];
